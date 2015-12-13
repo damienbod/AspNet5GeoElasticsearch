@@ -22,6 +22,8 @@ namespace AspNet5GeoElasticsearch
 
         public IConfigurationRoot Configuration { get; set; }
 
+        private string pathToDoc =
+            "C:\\git\\damienbod\\AspNet5GeoElasticsearch\\artifacts\\bin\\AspNet5GeoElasticsearch\\Debug\\dnx451\\AspNet5GeoElasticsearch.xml";
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
@@ -37,10 +39,12 @@ namespace AspNet5GeoElasticsearch
                     Description = "A simple api to search using geo location in Elasticsearch",
                     TermsOfService = "None"
                 });
+                options.OperationFilter(new Swashbuckle.SwaggerGen.XmlComments.ApplyXmlActionComments(pathToDoc));
             });
             services.ConfigureSwaggerSchema(options =>
             {
                 options.DescribeAllEnumsAsStrings = true;
+                options.ModelFilter(new Swashbuckle.SwaggerGen.XmlComments.ApplyXmlTypeComments(pathToDoc));
             });
 
             services.AddScoped<ISearchProvider, SearchProvider>();

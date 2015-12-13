@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>AspNet5GeoElasticsearch</name>
+    </assembly>
+    <members>
+        <member name="M:AspNet5GeoElasticsearch.Controllers.HomeController.Search(System.UInt32,System.Double,System.Double)">
+            <summary>
+            tests
+            </summary>
+            <param name="maxDistanceInMeter">sdde</param>
+            <param name="centerLongitude"></param>
+            <param name="centerLatitude"></param>
+            <returns></returns>
+        </member>
+        <member name="T:AspNet5GeoElasticsearch.Controllers.SearchController">
+            <summary>
+            This class is used as an api for the search requests.
+            </summary>
+        </member>
+        <member name="M:AspNet5GeoElasticsearch.Controllers.SearchController.Search(System.UInt32,System.Double,System.Double)">
+            <summary>
+            This method returns the found documents from Elasticsearch
+            </summary>
+            <param name="maxDistanceInMeter">Distance in meters from your location</param>
+            <param name="centerLongitude">center Longitude </param>
+            <param name="centerLatitude">center Latitude </param>
+            <returns>All the documents which were found</returns>
+        </member>
+        <member name="M:AspNet5GeoElasticsearch.Controllers.SearchController.InitData">
+            <summary>
+            Inits the Elasticsearch documents
+            </summary>
+        </member>
+    </members>
+</doc>
