@@ -37,7 +37,6 @@ namespace AspNet5GeoElasticsearch
                     Description = "A simple api to search using geo location in Elasticsearch",
                     TermsOfService = "None"
                 });
-
             });
             services.ConfigureSwaggerSchema(options =>
             {

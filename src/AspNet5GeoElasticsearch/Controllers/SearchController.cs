@@ -1,25 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNet.Mvc;
+﻿using Microsoft.AspNet.Mvc;
+using AspNet5GeoElasticsearch.ElasticsearchApi;
+using AspNet5GeoElasticsearch.Models;
 
-// For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+using Newtonsoft.Json;
 
 namespace AspNet5GeoElasticsearch.Controllers
 {
-    using AspNet5GeoElasticsearch.ElasticsearchApi;
-    using AspNet5GeoElasticsearch.Models;
+    using System.Collections.Generic;
 
-    using Newtonsoft.Json;
-
-    using Swashbuckle.SwaggerGen;
     using Swashbuckle.SwaggerGen.Annotations;
 
     /// <summary>
     /// This class is used as an api for the search requests.
     /// </summary>
     [Route("api/[controller]")]
+    [Produces("application/json")]
     public class SearchController : Controller
     {
         private readonly ISearchProvider _searchProvider;
@@ -38,6 +33,7 @@ namespace AspNet5GeoElasticsearch.Controllers
         /// <returns>All the documents which were found</returns>
         [HttpGet]
         [Produces(typeof(MapModel))]
+        [SwaggerResponse(System.Net.HttpStatusCode.OK, Type = typeof(MapModel))]
         [Route("GeoSearch")]
         public ActionResult Search(uint maxDistanceInMeter, double centerLongitude, double centerLatitude)
         {
