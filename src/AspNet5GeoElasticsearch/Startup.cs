@@ -7,6 +7,8 @@ using AspNet5GeoElasticsearch.ElasticsearchApi;
 
 namespace AspNet5GeoElasticsearch
 {
+    using Swashbuckle.SwaggerGen;
+
     public class Startup
     {
         public Startup(IHostingEnvironment env)
@@ -26,6 +28,21 @@ namespace AspNet5GeoElasticsearch
             // Add framework services.
             services.AddMvc();
             services.AddSwaggerGen();
+            services.ConfigureSwaggerDocument(options =>
+            {
+                options.SingleApiVersion(new Info
+                {
+                    Version = "v1",
+                    Title = "Geo Search API",
+                    Description = "A simple api to search using geo location in Elasticsearch",
+                    TermsOfService = "None"
+                });
+
+            });
+            services.ConfigureSwaggerSchema(options =>
+            {
+                options.DescribeAllEnumsAsStrings = true;
+            });
 
             services.AddScoped<ISearchProvider, SearchProvider>();
 

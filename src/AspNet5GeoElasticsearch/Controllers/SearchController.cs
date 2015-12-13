@@ -13,6 +13,9 @@ namespace AspNet5GeoElasticsearch.Controllers
 
     using Newtonsoft.Json;
 
+    using Swashbuckle.SwaggerGen;
+    using Swashbuckle.SwaggerGen.Annotations;
+
     /// <summary>
     /// This class is used as an api for the search requests.
     /// </summary>
@@ -35,6 +38,7 @@ namespace AspNet5GeoElasticsearch.Controllers
         /// <returns>All the documents which were found</returns>
         [HttpGet]
         [Produces(typeof(MapModel))]
+        [Route("GeoSearch")]
         public ActionResult Search(uint maxDistanceInMeter, double centerLongitude, double centerLatitude)
         {
             var searchResult = _searchProvider.SearchForClosest(maxDistanceInMeter, centerLongitude, centerLatitude);
@@ -53,6 +57,7 @@ namespace AspNet5GeoElasticsearch.Controllers
         /// Inits the Elasticsearch documents
         /// </summary>
         [HttpPost]
+        [Route("InitData")]
         public ActionResult InitData()
         {
             initSearchEngine();
