@@ -1,0 +1,120 @@
+﻿@*Bern	Lat 46.94792, Long 7.44461 *@
+@model AspNet5GeoElasticsearch.Models.MapModel
+
+<input type="hidden" value="@Model.MapData" id="mapdata" name="mapdata" />
+
+@using (Html.BeginForm("Search", "Home"))
+{
+    <fieldset class="form">
+        <legend>SEARCH for closest document in the search engine using geo distance</legend>
+        <table width="800">
+            <tr>
+                <th></th>
+            </tr>
+            <tr></tr>
+            <tr>
+                <td>
+                    <input type="submit" value="Search for closest: " style="width: 300px">
+                </td>
+                <td>
+                    <input type="hidden" value="@Model.CenterLongitude" id="centerLongitude" name="centerLongitude" />
+                    <input type="hidden" value="@Model.CenterLatitude" id="centerLatitude" name="centerLatitude" />
+
+                </td>
+                <td>
+                    <p style="width: 300px">Max distance in meter:</p>
+                    <input id="maxDistanceInMeter" name="maxDistanceInMeter" type="text" title="" value="@Model.MaxDistanceInMeter" style="width: 200px" />
+                </td>
+            </tr>
+        </table>
+    </fieldset>
+
+}
+
+<div class="row">
+    @*Bern	Lat 46.94792, Long 7.44461 *@
+    <div id="googleMap" style="width: 1000px; height: 800px;">
+    </div>
+</div>
+
+@section scripts
+{
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+    <script type="text/javascript" src="http://google-maps-utility-library-v3.googlecode.com/svn/trunk/markermanager/src/markermanager.js"></script>
+
+    <script language="javascript" type="text/javascript">
+        var map;
+        var mgr;
+
+        function initialize() {
+            var myOptions = {
+                zoom: 13,
+                center: new google.maps.LatLng(46.94792, 7.44461),
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+            map = new google.maps.Map(document.getElementById("googleMap"), myOptions);
+            mgr = new MarkerManager(map);
+            var infoWindow = new google.maps.InfoWindow({ content: "contents" });
+            google.maps.event.addListener(mgr, 'loaded', function() {
+
+                var modelData = $.parseJSON($("#mapdata").val());
+
+                var first = true;
+                $.each(modelData, function(entryIndex, entry) {
+                    //alert("Data" + entry.DetailsCoordinates + ", " + entry.Details);
+
+                    var htmlString = "<a href=\"" + entry.Details + "\">" + entry.Name + "</a>";
+                    var coor = entry.DetailsCoordinates.toString();
+                    var array = coor.split(',');
+
+                   // alert("Lat" + array[1] + "Long" + array[0]);
+                    if (first) {
+                        var marker = new google.maps.Marker({
+                            position: new google.maps.LatLng(array[1], array[0]),
+                            html: htmlString,
+                            icon: "http://localhost:21453/images/yourposition.png"
+                        });
+
+                        first = false;
+                    } else {
+                        var marker = new google.maps.Marker({
+                            position: new google.maps.LatLng(array[1], array[0]),
+                            html: htmlString
+                        });
+                    }
+
+
+                    google.maps.event.addListener(marker, "click", function() {
+                        infoWindow.setContent(this.html);
+                        infoWindow.open(map, this);
+                    });
+
+                    mgr.addMarker(marker, 0);
+
+                });
+
+               // alert('homemarker: ' + $("#centerLatitude").val() + ' Current Lng: ' + $("#centerLongitude").val());
+
+                var homemarker = new google.maps.Marker({
+
+                    position: new google.maps.LatLng($("#centerLatitude").val(), $("#centerLongitude").val()),
+                    html: "YOU",
+                    draggable: true,
+                    icon: "http://localhost:21453/images/ort.png"
+                });
+
+                google.maps.event.addListener(homemarker, 'dragend', function(evt) {
+                   // alert('Marker dropped: Current Lat: ' + evt.latLng.lat().toFixed(3) + ' Current Lng: ' + evt.latLng.lng().toFixed(3));
+                    $("#centerLongitude").val(evt.latLng.lng().toFixed(3));
+                    $("#centerLatitude").val(evt.latLng.lat().toFixed(3));
+                });
+
+                mgr.addMarker(homemarker, 0);
+
+                mgr.refresh();
+            });
+        }
+
+        google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+}
