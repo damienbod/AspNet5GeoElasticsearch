@@ -14,8 +14,8 @@
     using ElasticsearchCRUD.Model.Units;
     using ElasticsearchCRUD.Tracing;
 
-    public class SearchProvider
-	{
+    public class SearchProvider : ISearchProvider
+    {
 		private readonly IElasticsearchMappingResolver _elasticsearchMappingResolver = new ElasticsearchMappingResolver();
 		private const string ConnectionString = "http://localhost:9200";
 

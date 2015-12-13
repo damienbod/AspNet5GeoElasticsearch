@@ -27,7 +27,7 @@ namespace AspNet5GeoElasticsearch
             services.AddMvc();
             services.AddSwaggerGen();
 
-            services.AddScoped<SearchProvider>();
+            services.AddScoped<ISearchProvider, SearchProvider>();
 
         }
 

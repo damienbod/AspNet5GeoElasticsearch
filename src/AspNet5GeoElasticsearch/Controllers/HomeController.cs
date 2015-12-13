@@ -7,9 +7,9 @@ namespace AspNet5GeoElasticsearch.Controllers
 {
     public class HomeController : Controller
 	{
-        private readonly SearchProvider _searchProvider;
+        private readonly ISearchProvider _searchProvider;
 
-        public HomeController(SearchProvider searchProvider)
+        public HomeController(ISearchProvider searchProvider)
         {
             _searchProvider = searchProvider;
         }
@@ -31,6 +31,13 @@ namespace AspNet5GeoElasticsearch.Controllers
 			return View(mapModel);
 		}
 
+        /// <summary>
+        /// tests
+        /// </summary>
+        /// <param name="maxDistanceInMeter">sdde</param>
+        /// <param name="centerLongitude"></param>
+        /// <param name="centerLatitude"></param>
+        /// <returns></returns>
 		public ActionResult Search(uint maxDistanceInMeter, double centerLongitude, double centerLatitude)
 		{
 			var searchResult = _searchProvider.SearchForClosest(maxDistanceInMeter, centerLongitude, centerLatitude);
