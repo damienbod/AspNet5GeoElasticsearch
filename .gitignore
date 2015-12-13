@@ -1,3 +1,4 @@
 .vs/AspNet5GeoElasticsearch/v14/.suo
 src/AspNet5GeoElasticsearch/AspNet5GeoElasticsearch.xproj.user
 src/AspNet5GeoElasticsearch/project.lock.json
+artifacts/bin
