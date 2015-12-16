@@ -50,8 +50,6 @@ namespace AspNet5GeoElasticsearch.Controllers
 			};
 
 			return View("Index", mapModel);
-		}
-
-        
+		}   
     }
 }

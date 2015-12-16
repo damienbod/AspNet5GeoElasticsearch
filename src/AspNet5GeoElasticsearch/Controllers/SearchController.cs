@@ -2,14 +2,11 @@
 using AspNet5GeoElasticsearch.ElasticsearchApi;
 using AspNet5GeoElasticsearch.Models;
 
+using Swashbuckle.SwaggerGen.Annotations;
 using Newtonsoft.Json;
 
 namespace AspNet5GeoElasticsearch.Controllers
 {
-    using System.Collections.Generic;
-
-    using Swashbuckle.SwaggerGen.Annotations;
-
     /// <summary>
     /// This class is used as an api for the search requests.
     /// </summary>
