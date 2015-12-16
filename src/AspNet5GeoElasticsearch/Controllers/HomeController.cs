@@ -16,8 +16,6 @@ namespace AspNet5GeoElasticsearch.Controllers
 
 		public ActionResult Index()
 		{
-		    //initSearchEngine();
-
             var searchResult = _searchProvider.SearchForClosest(0, 7.44461, 46.94792);
 			var mapModel = new MapModel
 			{

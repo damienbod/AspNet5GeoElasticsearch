@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNet.Mvc;
 using AspNet5GeoElasticsearch.ElasticsearchApi;
 using AspNet5GeoElasticsearch.Models;
-
 using Swashbuckle.SwaggerGen.Annotations;
 using Newtonsoft.Json;
 
@@ -53,18 +52,13 @@ namespace AspNet5GeoElasticsearch.Controllers
         [Route("InitData")]
         public ActionResult InitData()
         {
-            initSearchEngine();
-            return Ok();
-        }
-
-        private void initSearchEngine()
-        {
             if (!_searchProvider.MapDetailsIndexExists())
             {
                 _searchProvider.InitMapDetailMapping();
                 _searchProvider.AddMapDetailData();
             }
-        }
 
+            return Ok();
+        }
     }
 }

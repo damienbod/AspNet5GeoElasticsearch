@@ -4,16 +4,14 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using AspNet5GeoElasticsearch.ElasticsearchApi;
+using Swashbuckle.SwaggerGen;
 
 namespace AspNet5GeoElasticsearch
 {
-    using Swashbuckle.SwaggerGen;
-
     public class Startup
     {
         public Startup(IHostingEnvironment env)
         {
-            // Set up configuration sources.
             var builder = new ConfigurationBuilder()
                 .AddJsonFile("appsettings.json")
                 .AddEnvironmentVariables();
@@ -24,7 +22,7 @@ namespace AspNet5GeoElasticsearch
 
         private string pathToDoc =
             "C:\\git\\damienbod\\AspNet5GeoElasticsearch\\artifacts\\bin\\AspNet5GeoElasticsearch\\Debug\\dnx451\\AspNet5GeoElasticsearch.xml";
-        // This method gets called by the runtime. Use this method to add services to the container.
+
         public void ConfigureServices(IServiceCollection services)
         {
             // Add framework services.
@@ -48,10 +46,8 @@ namespace AspNet5GeoElasticsearch
             });
 
             services.AddScoped<ISearchProvider, SearchProvider>();
-
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
@@ -75,7 +71,6 @@ namespace AspNet5GeoElasticsearch
             app.UseSwaggerUi();
         }
 
-        // Entry point for the application.
         public static void Main(string[] args) => WebApplication.Run<Startup>(args);
     }
 }
