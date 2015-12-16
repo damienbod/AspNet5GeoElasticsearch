@@ -62,12 +62,10 @@ namespace AspNet5GeoElasticsearch.Controllers
 
         private void initSearchEngine()
         {
-            var searchProvider = new SearchProvider();
-
-            if (!searchProvider.MapDetailsIndexExists())
+            if (!_searchProvider.MapDetailsIndexExists())
             {
-                searchProvider.InitMapDetailMapping();
-                searchProvider.AddMapDetailData();
+                _searchProvider.InitMapDetailMapping();
+                _searchProvider.AddMapDetailData();
             }
         }
 
