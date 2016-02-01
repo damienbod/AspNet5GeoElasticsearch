@@ -67,6 +67,8 @@ namespace AspNet5GeoElasticsearch
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
 
+            // This should be defined just after app.UseMVC as suggested by Muqeet Khan 
+            // See commnet in blog. Thanks.
             app.UseSwaggerGen();
             app.UseSwaggerUi();
         }
