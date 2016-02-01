@@ -20,11 +20,9 @@ namespace AspNet5GeoElasticsearch
 
         public IConfigurationRoot Configuration { get; set; }
 
-        private string pathToDoc =
-            "C:\\git\\damienbod\\AspNet5GeoElasticsearch\\artifacts\\bin\\AspNet5GeoElasticsearch\\Debug\\dnx451\\AspNet5GeoElasticsearch.xml";
-
         public void ConfigureServices(IServiceCollection services)
         {
+            var pathToDoc = Configuration["Swagger:Path"];
             // Add framework services.
             services.AddMvc();
             services.AddSwaggerGen();
