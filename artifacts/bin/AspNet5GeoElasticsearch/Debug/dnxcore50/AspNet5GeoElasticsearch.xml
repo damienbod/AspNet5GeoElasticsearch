@@ -32,5 +32,10 @@
             Inits the Elasticsearch documents
             </summary>
         </member>
+        <member name="P:AspNet5GeoElasticsearch.Models.MapModel.CenterLongitude">
+            <summary>
+            My Center Longitude
+            </summary>
+        </member>
     </members>
 </doc>
