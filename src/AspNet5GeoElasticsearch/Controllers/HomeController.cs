@@ -1,6 +1,6 @@
 ﻿using AspNet5GeoElasticsearch.Models;
 using Newtonsoft.Json;
-using Microsoft.AspNet.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using AspNet5GeoElasticsearch.ElasticsearchApi;
 
 namespace AspNet5GeoElasticsearch.Controllers

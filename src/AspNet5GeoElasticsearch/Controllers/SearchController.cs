@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNet.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using AspNet5GeoElasticsearch.ElasticsearchApi;
 using AspNet5GeoElasticsearch.Models;
 using Swashbuckle.SwaggerGen.Annotations;
