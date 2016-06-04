@@ -27,11 +27,11 @@ namespace AspNet5GeoElasticsearch.Controllers
         /// <returns></returns>
         public ActionResult Index()
         {
-            if (!_searchProvider.MapDetailsIndexExists())
-            {
-                _searchProvider.InitMapDetailMapping();
-                _searchProvider.AddMapDetailData();
-            }
+            //if (!_searchProvider.MapDetailsIndexExists())
+            //{
+            //    _searchProvider.InitMapDetailMapping();
+            //    _searchProvider.AddMapDetailData();
+            //}
 
             var searchResult = _searchProvider.SearchForClosest(0, 7.44461, 46.94792);
             var mapModel = new MapModel

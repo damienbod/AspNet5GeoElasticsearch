@@ -71,6 +71,10 @@ namespace AspNet5GeoElasticsearch.ElasticsearchApi
         //}
         public List<MapDetail> SearchForClosest(uint maxDistanceInMeter, double centerLongitude, double centerLatitude)
         {
+            if(maxDistanceInMeter == 0)
+            {
+                maxDistanceInMeter = 1000000;
+            }
             var search = new Search
             {
                 Query = new Query(
