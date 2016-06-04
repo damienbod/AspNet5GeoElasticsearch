@@ -1,4 +1,4 @@
-﻿{
+{
     "dependencies": {
         "Microsoft.NETCore.App": {
             "version": "1.0.0-rc2-3002702",
@@ -19,10 +19,9 @@
         "Microsoft.Extensions.Logging.Console": "1.0.0-rc2-final",
         "Microsoft.Extensions.Logging.Debug": "1.0.0-rc2-final",
         "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0-rc2-final",
-        "Microsoft.Extensions.Options.ConfigurationExtensions": "1.0.0-rc2-final",
         "ElasticsearchCrud": "2.3.1.1-RC2",
-		"Swashbuckle.SwaggerGen": "6.0.0-beta9",
-        "Swashbuckle.SwaggerUi": "6.0.0-beta9",
+        "Swashbuckle.SwaggerGen": "6.0.0-beta9",
+        "Swashbuckle.SwaggerUi": "6.0.0-beta9"
     },
 
   "tools": {

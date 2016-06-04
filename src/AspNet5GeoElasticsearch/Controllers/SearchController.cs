@@ -15,6 +15,10 @@ namespace AspNet5GeoElasticsearch.Controllers
     {
         private readonly ISearchProvider _searchProvider;
 
+        /// <summary>
+        /// Search controller for geo search service
+        /// </summary>
+        /// <param name="searchProvider"></param>
         public SearchController(ISearchProvider searchProvider)
         {
             _searchProvider = searchProvider;

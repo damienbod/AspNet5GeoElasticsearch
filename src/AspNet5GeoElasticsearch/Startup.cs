@@ -1,10 +1,9 @@
-﻿using System.IO;
+﻿using AspNet5GeoElasticsearch.ElasticsearchApi;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using AspNet5GeoElasticsearch.ElasticsearchApi;
 using Swashbuckle.SwaggerGen.Generator;
 
 namespace AspNet5GeoElasticsearch
@@ -21,9 +20,15 @@ namespace AspNet5GeoElasticsearch
             Configuration = builder.Build();
         }
 
+        /// <summary>
+        /// Config root object
+        /// </summary>
+        public IConfigurationRoot Configuration { get; }
 
-        public IConfigurationRoot Configuration { get; set; }
-
+        /// <summary>
+        ///  This method gets called by the runtime. Use this method to add services to the container.
+        /// </summary>
+        /// <param name="services"></param>
         public void ConfigureServices(IServiceCollection services)
         {
             var pathToDoc = Configuration["Swagger:Path"];
@@ -47,31 +52,38 @@ namespace AspNet5GeoElasticsearch
             services.AddScoped<ISearchProvider, SearchProvider>();
         }
 
+        /// <summary>
+        /// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        /// </summary>
+        /// <param name="app"></param>
+        /// <param name="env"></param>
+        /// <param name="loggerFactory"></param>
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
-            loggerFactory.AddConsole();
+            loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
-            app.UseDefaultFiles();
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+                app.UseBrowserLink();
+            }
+            else
+            {
+                app.UseExceptionHandler("/Home/Error");
+            }
 
             app.UseStaticFiles();
-            app.UseMvc();
-            
+
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                    name: "default",
+                    template: "{controller=Home}/{action=Index}/{id?}");
+            });
+
             app.UseSwaggerGen();
             app.UseSwaggerUi();
         }
-
-        public static void Main(string[] args)
-        {
-            var host = new WebHostBuilder()
-                .UseKestrel()
-                .UseContentRoot(Directory.GetCurrentDirectory())
-                .UseIISIntegration()
-                .UseStartup<Startup>()
-                .Build();
-
-            host.Run();
-        }
     }
 }
-
