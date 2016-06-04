@@ -53,6 +53,7 @@ namespace AspNet5GeoElasticsearch.Controllers
         /// Inits the Elasticsearch documents
         /// </summary>
         [HttpPost]
+        [HttpGet]
         [Route("InitData")]
         public ActionResult InitData()
         {
