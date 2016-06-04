@@ -1,10 +1,10 @@
-﻿using Microsoft.AspNet.Builder;
-using Microsoft.AspNet.Hosting;
+﻿using AspNet5GeoElasticsearch.ElasticsearchApi;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using AspNet5GeoElasticsearch.ElasticsearchApi;
-using Swashbuckle.SwaggerGen;
+using Swashbuckle.SwaggerGen.Generator;
 
 namespace AspNet5GeoElasticsearch
 {
@@ -13,20 +13,30 @@ namespace AspNet5GeoElasticsearch
         public Startup(IHostingEnvironment env)
         {
             var builder = new ConfigurationBuilder()
-                .AddJsonFile("appsettings.json")
+                .SetBasePath(env.ContentRootPath)
+                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
                 .AddEnvironmentVariables();
             Configuration = builder.Build();
         }
 
-        public IConfigurationRoot Configuration { get; set; }
+        /// <summary>
+        /// Config root object
+        /// </summary>
+        public IConfigurationRoot Configuration { get; }
 
+        /// <summary>
+        ///  This method gets called by the runtime. Use this method to add services to the container.
+        /// </summary>
+        /// <param name="services"></param>
         public void ConfigureServices(IServiceCollection services)
         {
             var pathToDoc = Configuration["Swagger:Path"];
-            // Add framework services.
+
             services.AddMvc();
+
             services.AddSwaggerGen();
-            services.ConfigureSwaggerDocument(options =>
+            services.ConfigureSwaggerGen(options =>
             {
                 options.SingleApiVersion(new Info
                 {
@@ -35,26 +45,33 @@ namespace AspNet5GeoElasticsearch
                     Description = "A simple api to search using geo location in Elasticsearch",
                     TermsOfService = "None"
                 });
-                options.OperationFilter(new Swashbuckle.SwaggerGen.XmlComments.ApplyXmlActionComments(pathToDoc));
-            });
-            services.ConfigureSwaggerSchema(options =>
-            {
-                options.DescribeAllEnumsAsStrings = true;
-                options.ModelFilter(new Swashbuckle.SwaggerGen.XmlComments.ApplyXmlTypeComments(pathToDoc));
+                options.IncludeXmlComments(pathToDoc);
+                options.DescribeAllEnumsAsStrings();
             });
 
             services.AddScoped<ISearchProvider, SearchProvider>();
         }
 
+        /// <summary>
+        /// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        /// </summary>
+        /// <param name="app"></param>
+        /// <param name="env"></param>
+        /// <param name="loggerFactory"></param>
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
-            app.UseBrowserLink();
-            app.UseDeveloperExceptionPage();
-
-            app.UseIISPlatformHandler();
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+                app.UseBrowserLink();
+            }
+            else
+            {
+                app.UseExceptionHandler("/Home/Error");
+            }
 
             app.UseStaticFiles();
 
@@ -65,13 +82,8 @@ namespace AspNet5GeoElasticsearch
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
 
-            // This should be defined just after app.UseMVC as suggested by Muqeet Khan 
-            // See commnet in blog. Thanks.
             app.UseSwaggerGen();
             app.UseSwaggerUi();
         }
-
-        public static void Main(string[] args) => WebApplication.Run<Startup>(args);
     }
 }
-

@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNet.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using AspNet5GeoElasticsearch.ElasticsearchApi;
 using AspNet5GeoElasticsearch.Models;
 using Swashbuckle.SwaggerGen.Annotations;
@@ -15,6 +15,10 @@ namespace AspNet5GeoElasticsearch.Controllers
     {
         private readonly ISearchProvider _searchProvider;
 
+        /// <summary>
+        /// Search controller for geo search service
+        /// </summary>
+        /// <param name="searchProvider"></param>
         public SearchController(ISearchProvider searchProvider)
         {
             _searchProvider = searchProvider;

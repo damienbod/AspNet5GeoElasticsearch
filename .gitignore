@@ -2,3 +2,6 @@
 src/AspNet5GeoElasticsearch/AspNet5GeoElasticsearch.xproj.user
 src/AspNet5GeoElasticsearch/project.lock.json
 artifacts/bin
+src/AspNet5GeoElasticsearch/bin
+src/AspNet5GeoElasticsearch/obj
+src/AspNet5GeoElasticsearch/node_modules
