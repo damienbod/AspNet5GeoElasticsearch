@@ -6,7 +6,7 @@ using AspNet5GeoElasticsearch.ElasticsearchApi;
 namespace AspNet5GeoElasticsearch.Controllers
 {
     public class HomeController : Controller
-	{
+    {
         private readonly ISearchProvider _searchProvider;
 
         public HomeController(ISearchProvider searchProvider)
@@ -14,20 +14,20 @@ namespace AspNet5GeoElasticsearch.Controllers
             _searchProvider = searchProvider;
         }
 
-		public ActionResult Index()
-		{
+        public ActionResult Index()
+        {
             var searchResult = _searchProvider.SearchForClosest(0, 7.44461, 46.94792);
-			var mapModel = new MapModel
-			{
-				MapData = JsonConvert.SerializeObject(searchResult),
-				// Bern	Lat 46.94792, Long 7.44461
-				CenterLatitude = 46.94792,
-				CenterLongitude = 7.44461,
-				MaxDistanceInMeter=0
-			};
+            var mapModel = new MapModel
+            {
+                MapData = JsonConvert.SerializeObject(searchResult),
+                // Bern	Lat 46.94792, Long 7.44461
+                CenterLatitude = 46.94792,
+                CenterLongitude = 7.44461,
+                MaxDistanceInMeter=0
+            };
 
-			return View(mapModel);
-		}
+            return View(mapModel);
+        }
 
         /// <summary>
         /// tests
@@ -36,18 +36,18 @@ namespace AspNet5GeoElasticsearch.Controllers
         /// <param name="centerLongitude"></param>
         /// <param name="centerLatitude"></param>
         /// <returns></returns>
-		public ActionResult Search(uint maxDistanceInMeter, double centerLongitude, double centerLatitude)
-		{
-			var searchResult = _searchProvider.SearchForClosest(maxDistanceInMeter, centerLongitude, centerLatitude);
-			var mapModel = new MapModel
-			{
-				MapData = JsonConvert.SerializeObject(searchResult),
-				CenterLongitude = centerLongitude,
-				CenterLatitude = centerLatitude,
-				MaxDistanceInMeter = maxDistanceInMeter
-			};
+        public ActionResult Search(uint maxDistanceInMeter, double centerLongitude, double centerLatitude)
+        {
+            var searchResult = _searchProvider.SearchForClosest(maxDistanceInMeter, centerLongitude, centerLatitude);
+            var mapModel = new MapModel
+            {
+                MapData = JsonConvert.SerializeObject(searchResult),
+                CenterLongitude = centerLongitude,
+                CenterLatitude = centerLatitude,
+                MaxDistanceInMeter = maxDistanceInMeter
+            };
 
-			return View("Index", mapModel);
-		}   
+            return View("Index", mapModel);
+        }   
     }
 }
