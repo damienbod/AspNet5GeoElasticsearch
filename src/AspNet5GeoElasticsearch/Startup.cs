@@ -83,6 +83,7 @@ namespace AspNet5GeoElasticsearch
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
 
+            app.UseSwagger();
             app.UseSwaggerUi();
         }
     }
