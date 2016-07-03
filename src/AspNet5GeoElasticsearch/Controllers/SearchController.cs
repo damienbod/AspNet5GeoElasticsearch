@@ -51,6 +51,7 @@ namespace AspNet5GeoElasticsearch.Controllers
 
         /// <summary>
         /// Inits the Elasticsearch documents
+        /// http://localhost:21453/api/Search/InitData
         /// </summary>
         [HttpPost]
         [HttpGet]
