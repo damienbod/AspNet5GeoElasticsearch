@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Swashbuckle.Swagger.Model;
 using Swashbuckle.SwaggerGen.Generator;
 
 namespace AspNet5GeoElasticsearch
@@ -82,7 +83,6 @@ namespace AspNet5GeoElasticsearch
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
 
-            app.UseSwaggerGen();
             app.UseSwaggerUi();
         }
     }
