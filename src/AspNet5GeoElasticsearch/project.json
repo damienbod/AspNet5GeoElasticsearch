@@ -19,7 +19,7 @@
         "Microsoft.Extensions.Logging.Console": "1.0.0",
         "Microsoft.Extensions.Logging.Debug": "1.0.0",
         "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0",
-        "ElasticsearchCrud": "2.3.3.1",
+        "ElasticsearchCrud": "2.4.1.1",
         "Swashbuckle.SwaggerGen": "6.0.0-beta901",
         "Swashbuckle.SwaggerUi": "6.0.0-beta901"
     },
