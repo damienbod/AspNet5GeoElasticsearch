@@ -5,3 +5,6 @@ artifacts/bin
 src/AspNet5GeoElasticsearch/bin
 src/AspNet5GeoElasticsearch/obj
 src/AspNet5GeoElasticsearch/node_modules
+src/AspNetCoreGeoElasticsearch/node_modules
+.vs/AspNetCoreGeoElasticsearch/v14/.suo
+.vs
