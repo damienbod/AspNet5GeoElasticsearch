@@ -1,4 +1,4 @@
-﻿namespace AspNet5GeoElasticsearch.Models
+﻿namespace AspNetCoreGeoElasticsearch.Models
 {
 	public class MapModel
 	{

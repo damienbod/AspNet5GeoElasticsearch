@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using AspNet5GeoElasticsearch.Models;
+using AspNetCoreGeoElasticsearch.Models;
 using ElasticsearchCRUD;
 using ElasticsearchCRUD.Model.GeoModel;
 using ElasticsearchCRUD.Model.SearchModel;
@@ -10,7 +10,7 @@ using ElasticsearchCRUD.Model.SearchModel.Sorting;
 using ElasticsearchCRUD.Model.Units;
 using ElasticsearchCRUD.Tracing;
 
-namespace AspNet5GeoElasticsearch.ElasticsearchApi
+namespace AspNetCoreGeoElasticsearch.ElasticsearchApi
 {
     public class SearchProvider : ISearchProvider
     {

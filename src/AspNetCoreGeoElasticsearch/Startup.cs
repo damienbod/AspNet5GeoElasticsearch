@@ -1,4 +1,4 @@
-﻿using AspNet5GeoElasticsearch.ElasticsearchApi;
+﻿using AspNetCoreGeoElasticsearch.ElasticsearchApi;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -6,7 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Swashbuckle.AspNetCore.Swagger;
 
-namespace AspNet5GeoElasticsearch
+namespace AspNetCoreGeoElasticsearch
 {
     /// <summary>
     /// startup
@@ -92,7 +92,10 @@ namespace AspNet5GeoElasticsearch
             });
 
             app.UseSwagger();
-            app.UseSwaggerUi();
+            app.UseSwaggerUi(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "V1 Docs");
+            });
         }
     }
 }

@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using AspNet5GeoElasticsearch.ElasticsearchApi;
-using AspNet5GeoElasticsearch.Models;
+using AspNetCoreGeoElasticsearch.ElasticsearchApi;
+using AspNetCoreGeoElasticsearch.Models;
 using Newtonsoft.Json;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
-namespace AspNet5GeoElasticsearch.Controllers
+namespace AspNetCoreGeoElasticsearch.Controllers
 {
     /// <summary>
     /// This class is used as an api for the search requests.
