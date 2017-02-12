@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using AspNet5GeoElasticsearch.ElasticsearchApi;
 using AspNet5GeoElasticsearch.Models;
-using Swashbuckle.SwaggerGen.Annotations;
 using Newtonsoft.Json;
+using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace AspNet5GeoElasticsearch.Controllers
 {
@@ -33,7 +33,7 @@ namespace AspNet5GeoElasticsearch.Controllers
         /// <returns>All the documents which were found</returns>
         [HttpGet]
         [Produces(typeof(MapModel))]
-        [SwaggerResponse(System.Net.HttpStatusCode.OK, Type = typeof(MapModel))]
+        [SwaggerResponse(200, Type = typeof(MapModel))]
         [Route("GeoSearch")]
         public ActionResult Search(uint maxDistanceInMeter, double centerLongitude, double centerLatitude)
         {
