@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 
-namespace AspNet5GeoElasticsearch
+namespace AspNetCoreGeoElasticsearch
 {
     /// <summary>
     /// main
