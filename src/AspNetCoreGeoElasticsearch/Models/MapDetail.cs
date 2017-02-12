@@ -1,4 +1,4 @@
-﻿namespace AspNet5GeoElasticsearch.Models
+﻿namespace AspNetCoreGeoElasticsearch.Models
 {
     using ElasticsearchCRUD.ContextAddDeleteUpdate.CoreTypeAttributes;
     using ElasticsearchCRUD.Model.GeoModel;

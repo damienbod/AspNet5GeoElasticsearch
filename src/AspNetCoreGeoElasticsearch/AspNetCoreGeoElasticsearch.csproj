@@ -30,8 +30,7 @@
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="1.0.1" />
     <PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink.Loader" Version="14.0.1" />
     <PackageReference Include="ElasticsearchCrud" Version="2.4.1.1" />
-    <PackageReference Include="Swashbuckle.SwaggerGen" Version="6.0.0-beta901" />
-    <PackageReference Include="Swashbuckle.SwaggerUi" Version="6.0.0-beta901" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="1.0.0-rc1" />
   </ItemGroup>
 
   <Target Name="PrepublishScript" BeforeTargets="PrepareForPublish">

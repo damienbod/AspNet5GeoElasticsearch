@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using AspNet5GeoElasticsearch.ElasticsearchApi;
-using AspNet5GeoElasticsearch.Models;
-using Swashbuckle.SwaggerGen.Annotations;
+using AspNetCoreGeoElasticsearch.ElasticsearchApi;
+using AspNetCoreGeoElasticsearch.Models;
 using Newtonsoft.Json;
+using Swashbuckle.AspNetCore.SwaggerGen;
 
-namespace AspNet5GeoElasticsearch.Controllers
+namespace AspNetCoreGeoElasticsearch.Controllers
 {
     /// <summary>
     /// This class is used as an api for the search requests.
@@ -33,9 +33,9 @@ namespace AspNet5GeoElasticsearch.Controllers
         /// <returns>All the documents which were found</returns>
         [HttpGet]
         [Produces(typeof(MapModel))]
-        [SwaggerResponse(System.Net.HttpStatusCode.OK, Type = typeof(MapModel))]
+        [SwaggerResponse(200, Type = typeof(MapModel))]
         [Route("GeoSearch")]
-        public ActionResult Search(uint maxDistanceInMeter, double centerLongitude, double centerLatitude)
+        public ActionResult Search([FromQuery]uint maxDistanceInMeter, [FromQuery]double centerLongitude, [FromQuery]double centerLatitude)
         {
             var searchResult = _searchProvider.SearchForClosest(maxDistanceInMeter, centerLongitude, centerLatitude);
             var mapModel = new MapModel

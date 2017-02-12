@@ -1,9 +1,9 @@
-﻿using AspNet5GeoElasticsearch.Models;
+﻿using AspNetCoreGeoElasticsearch.Models;
 using Newtonsoft.Json;
 using Microsoft.AspNetCore.Mvc;
-using AspNet5GeoElasticsearch.ElasticsearchApi;
+using AspNetCoreGeoElasticsearch.ElasticsearchApi;
 
-namespace AspNet5GeoElasticsearch.Controllers
+namespace AspNetCoreGeoElasticsearch.Controllers
 {
     /// <summary>
     /// Home controller which uses the search data and displays it in a google ma

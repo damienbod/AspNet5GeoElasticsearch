@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using AspNet5GeoElasticsearch.Models;
+using AspNetCoreGeoElasticsearch.Models;
 
-namespace AspNet5GeoElasticsearch.ElasticsearchApi
+namespace AspNetCoreGeoElasticsearch.ElasticsearchApi
 {
     public interface ISearchProvider
     {
