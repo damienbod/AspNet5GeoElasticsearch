@@ -8,3 +8,4 @@ src/AspNet5GeoElasticsearch/node_modules
 src/AspNetCoreGeoElasticsearch/node_modules
 .vs/AspNetCoreGeoElasticsearch/v14/.suo
 .vs
+src/AspNetCoreGeoElasticsearch/obj
