@@ -91,7 +91,11 @@ namespace AspNetCoreGeoElasticsearch
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
 
-            app.UseSwagger();
+            app.UseSwagger(c =>
+            {
+                c.PreSerializeFilters.Add((swagger, httpReq) => swagger.Host = httpReq.Host.Value);
+            });
+
             app.UseSwaggerUi(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "V1 Docs");

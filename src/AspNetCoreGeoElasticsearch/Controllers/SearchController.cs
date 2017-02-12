@@ -35,7 +35,7 @@ namespace AspNetCoreGeoElasticsearch.Controllers
         [Produces(typeof(MapModel))]
         [SwaggerResponse(200, Type = typeof(MapModel))]
         [Route("GeoSearch")]
-        public ActionResult Search(uint maxDistanceInMeter, double centerLongitude, double centerLatitude)
+        public ActionResult Search([FromQuery]uint maxDistanceInMeter, [FromQuery]double centerLongitude, [FromQuery]double centerLatitude)
         {
             var searchResult = _searchProvider.SearchForClosest(maxDistanceInMeter, centerLongitude, centerLatitude);
             var mapModel = new MapModel
