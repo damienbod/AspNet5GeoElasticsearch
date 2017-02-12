@@ -7,8 +7,15 @@ using Microsoft.AspNetCore.Hosting;
 
 namespace AspNet5GeoElasticsearch
 {
+    /// <summary>
+    /// main
+    /// </summary>
     public class Program
     {
+        /// <summary>
+        /// main
+        /// </summary>
+        /// <param name="args"></param>
         public static void Main(string[] args)
         {
             var host = new WebHostBuilder()

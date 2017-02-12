@@ -9,3 +9,4 @@ src/AspNetCoreGeoElasticsearch/node_modules
 .vs/AspNetCoreGeoElasticsearch/v14/.suo
 .vs
 src/AspNetCoreGeoElasticsearch/obj
+src/AspNetCoreGeoElasticsearch/bin

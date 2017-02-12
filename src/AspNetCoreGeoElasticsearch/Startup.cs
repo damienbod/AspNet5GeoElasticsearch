@@ -9,8 +9,15 @@ using Swashbuckle.SwaggerGen.Generator;
 
 namespace AspNet5GeoElasticsearch
 {
+    /// <summary>
+    /// startup
+    /// </summary>
     public class Startup
     {
+        /// <summary>
+        /// ctor for startup
+        /// </summary>
+        /// <param name="env"></param>
         public Startup(IHostingEnvironment env)
         {
             var builder = new ConfigurationBuilder()
