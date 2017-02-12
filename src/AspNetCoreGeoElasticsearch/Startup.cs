@@ -4,7 +4,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.PlatformAbstractions;
 using Swashbuckle.AspNetCore.Swagger;
+using System.IO;
 
 namespace AspNetCoreGeoElasticsearch
 {
@@ -38,7 +40,7 @@ namespace AspNetCoreGeoElasticsearch
         /// <param name="services"></param>
         public void ConfigureServices(IServiceCollection services)
         {
-            var pathToDoc = Configuration["Swagger:Path"];
+            var pathToDoc = Configuration["Swagger:FileName"];
 
             services.AddMvc();
 
@@ -54,7 +56,9 @@ namespace AspNetCoreGeoElasticsearch
                         TermsOfService = "None"
                     }
                  );
-                options.IncludeXmlComments(pathToDoc);
+
+                var filePath = Path.Combine(PlatformServices.Default.Application.ApplicationBasePath, pathToDoc);
+                options.IncludeXmlComments(filePath);
                 options.DescribeAllEnumsAsStrings();
             });
 
